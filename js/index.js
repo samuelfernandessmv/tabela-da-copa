@@ -30,3 +30,19 @@ fetch('jogos-fase1.json')
         <td class='esquerda'>${jogo.estadio}</td>
         `
 }))
+
+// Ler os arquivos .json das classificações
+
+let tabelaClasificação = document.querySelector('.tabelaClasificação')
+
+fetch('classificacaoGrupoG.json')
+.then( response => response.json())
+.then(dados => dados.forEach( selecao =>  {
+    console.log(dados)
+    console.log(selecao)
+
+    let linha = document.createElement('tr')  
+
+    tabelaClassificacao.appendChild(linha)
+
+}))

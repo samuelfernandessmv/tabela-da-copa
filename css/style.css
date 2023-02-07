@@ -64,3 +64,14 @@ table tr:last-child td {
 .partida {
     width: 100px;
 }
+
+/* Estilos de Classificação */
+
+h2 {
+    text-align: center;
+}
+
+.siglas {
+    text-align: center;
+    font-size: 0.75rem;
+}
