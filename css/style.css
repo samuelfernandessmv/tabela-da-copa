@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');   
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter',sans-serif;
+    background-color: #2C010F;
+    color: #FFF;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+table {
+    width: 90%;
+    background-color: #FFF;
+    color: Black;
+    border-radius: 10px;
+    margin-inline: auto;
+    margin-block: 1rem;
+    padding: 0.5rem;
+}
+
+table tr td, table tr th {
+    border-bottom: 1px solid #CCC;
+    padding: 0.5rem;
+}
+
+table tr:last-child td {
+    border: none;
+}
+
+.esquerda {
+    text-align: left;
+}
+
+.centralizar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.imagemP {
+    width: 30px;
+}
+
+.gols {
+    width: 30px;
+    height: 30px;
+    display: block;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.partida {
+    width: 100px;
+}
