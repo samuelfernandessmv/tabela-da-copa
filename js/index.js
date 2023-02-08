@@ -33,16 +33,42 @@ fetch('jogos-fase1.json')
 
 // Ler os arquivos .json das classificações
 
-let tabelaClasificação = document.querySelector('.tabelaClasificação')
+let tabelaClassificacao = document.querySelector('.tabelaClassificacao')
 
-fetch('classificacaoGrupoG.json')
-.then( response => response.json())
-.then(dados => dados.forEach( selecao =>  {
-    console.log(dados)
-    console.log(selecao)
+function exibirTabelaClassificacao (letraGrupo) {
 
-    let linha = document.createElement('tr')  
+    document.querySelector('.letra').innerHTML = letraGrupo
 
-    tabelaClassificacao.appendChild(linha)
+    fetch(`classificacaoGrupo${letraGrupo}.json`)
+    .then( response => response.json())
+    .then( dados => {
+        dados.sort(function compararNumeros(a, b) {
+            return a.posicao - b.posicao;
+        })
+        
+        dados.forEach( selecao =>  {
+        //console.log(dados)
+        console.log(selecao)
 
-}))
+        let linha = document.createElement('tr')  
+
+        tabelaClassificacao.appendChild(linha)
+
+        linha.innerHTML =`
+            <td>${selecao.posicao}</td> 
+            <td>${selecao.selecao}</td> 
+            <td>${selecao.pontos}</td> 
+            <td>${selecao.jogos}</td> 
+            <td>${selecao.vitorias}</td> 
+            <td>${selecao.empates}</td> 
+            <td>${selecao.derrotas}</td> 
+            <td>${selecao.gols_pro}</td> 
+            <td>${selecao.gols_contra}</td> 
+            <td>${selecao.saldo_de_gols}</td> 
+        `
+        })
+    }
+    )
+}
+
+exibirTabelaClassificacao('C')

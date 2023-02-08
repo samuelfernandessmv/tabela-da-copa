@@ -25,6 +25,7 @@ table {
     margin-inline: auto;
     margin-block: 1rem;
     padding: 0.5rem;
+    text-align: center;
 }
 
 table tr td, table tr th {
