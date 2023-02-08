@@ -71,4 +71,4 @@ function exibirTabelaClassificacao (letraGrupo) {
     )
 }
 
-exibirTabelaClassificacao('C')
+exibirTabelaClassificacao('G')
