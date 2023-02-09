@@ -1,16 +1,16 @@
-console.log ('Tabela da Copa')
+console.log("Tabela da Copa");
 
-let tabelaJogos = document.querySelector('.tabelaJogos')
-console.log(tabelaJogos)
+let tabelaJogos = document.querySelector(".tabelaJogos");
+console.log(tabelaJogos);
 
 // Ler o arquivo json
-fetch('jogos-fase1.json')
-.then( response => response.json())
-.then( data => 
-    data.forEach( jogo => {
-        let linha = document.createElement('tr')    
-        tabelaJogos.appendChild(linha)
-        linha.innerHTML = `
+fetch("jogos-fase1.json")
+  .then((response) => response.json())
+  .then((data) =>
+    data.forEach((jogo) => {
+      let linha = document.createElement("tr");
+      tabelaJogos.appendChild(linha);
+      linha.innerHTML = `
         <td>${jogo.diaSemana}</td>
         <td>${jogo.data}</td>
         <td>${jogo.hora}</td>
@@ -28,33 +28,39 @@ fetch('jogos-fase1.json')
             <img class='imagemP' src='./images/bandeiras/${jogo.visitante}' />
         </td>
         <td class='esquerda'>${jogo.estadio}</td>
-        `
-}))
+        `;
+    })
+  );
 
 // Ler os arquivos .json das classificações
 
-let tabelaClassificacao = document.querySelector('.tabelaClassificacao')
+let tabelaClassificacao = document.querySelector(".tabelaClassificacao");
+// console.log(tabelaClassificacao)
 
-function exibirTabelaClassificacao (letraGrupo) {
+let linhas = document.querySelectorAll(".corpoClassificacao tr");
+console.log(linhas);
 
-    document.querySelector('.letra').innerHTML = letraGrupo
+exibirTabelaClassificacao('A    ')
 
-    fetch(`classificacaoGrupo${letraGrupo}.json`)
-    .then( response => response.json())
-    .then( dados => {
-        dados.sort(function compararNumeros(a, b) {
-            return a.posicao - b.posicao;
-        })
-        
-        dados.forEach( selecao =>  {
+function exibirTabelaClassificacao(letraGrupo) {
+  document.querySelector(".letra").innerHTML = letraGrupo;
+
+  fetch(`classificacaoGrupo${letraGrupo}.json`)
+    .then((response) => response.json())
+    .then((dados) => {
+      dados.sort(function compararNumeros(a, b) {
+        return a.posicao - b.posicao;
+      });
+
+      dados.forEach( (selecao, indice) => {
         //console.log(dados)
-        console.log(selecao)
+        // console.log(selecao)
 
-        let linha = document.createElement('tr')  
+        // let linha = document.createElement("tr");
 
-        tabelaClassificacao.appendChild(linha)
+        // tabelaClassificacao.appendChild(linha);
 
-        linha.innerHTML =`
+        linhas[indice].innerHTML = `
             <td>${selecao.posicao}</td> 
             <td>${selecao.selecao}</td> 
             <td>${selecao.pontos}</td> 
@@ -65,10 +71,17 @@ function exibirTabelaClassificacao (letraGrupo) {
             <td>${selecao.gols_pro}</td> 
             <td>${selecao.gols_contra}</td> 
             <td>${selecao.saldo_de_gols}</td> 
-        `
-        })
-    }
-    )
+        `;
+      });
+    });
 }
 
-exibirTabelaClassificacao('G')
+// exibirTabelaClassificacao('G')
+
+let selectLetra = document.querySelector(".letrasDosGrupos");
+console.log(selectLetra);
+
+selectLetra.addEventListener("change", (event) => {
+  console.log(event.target.value);
+  exibirTabelaClassificacao(event.target.value);
+});
